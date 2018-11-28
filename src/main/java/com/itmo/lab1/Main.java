@@ -1,10 +1,11 @@
 package com.itmo.lab1;
 
-import com.itmo.lab1.fileworker.FileWorker;
+import com.itmo.general.fileworker.FileWorker;
 import com.itmo.lab1.math.Calculator;
 import com.itmo.lab1.math.Matrix;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class Main {
@@ -42,7 +43,7 @@ public class Main {
 
         System.out.print("Reading start");
         FileWorker fileWorker = new FileWorker();
-        ArrayList<Matrix> matrices = fileWorker.readTestData();
+        List<Matrix> matrices = fileWorker.readTestData();
         System.out.println("\rReading complete");
 
 

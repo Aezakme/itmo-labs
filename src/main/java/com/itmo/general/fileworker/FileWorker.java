@@ -1,4 +1,4 @@
-package com.itmo.lab1.fileworker;
+package com.itmo.general.fileworker;
 
 import com.itmo.lab1.math.Matrix;
 
@@ -6,14 +6,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class FileWorker {
 
-    private final String FILE_NAME = "temp.txt";
-    private final Integer MATRIX_COUNT = 500_000;
-    private final Integer VALUES_BOUND = 1000;
+    private static final String FILE_NAME = "temp.txt";
+    private static final Integer MATRIX_COUNT = 500;
+    private static final Integer VALUES_BOUND = 1000;
 
     public void writeTestData() {
 
@@ -33,7 +34,7 @@ public class FileWorker {
         }
     }
 
-    public ArrayList<Matrix> readTestData() {
+    public List<Matrix> readTestData() {
         ArrayList<Matrix> matrices = new ArrayList<>();
         try (FileReader fileReader = new FileReader(FILE_NAME)) {
             Scanner scanner = new Scanner(fileReader);

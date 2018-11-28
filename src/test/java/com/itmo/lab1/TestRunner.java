@@ -1,11 +1,12 @@
 package com.itmo.lab1;
 
-import com.itmo.lab1.fileworker.FileWorker;
+import com.itmo.general.fileworker.FileWorker;
 import com.itmo.lab1.math.Calculator;
 import com.itmo.lab1.math.Matrix;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestRunner {
 
@@ -22,7 +23,7 @@ public class TestRunner {
     @Test
     public void oneExecutor() {
 
-        ArrayList<Matrix> matrices = fileWorker.readTestData();
+        List<Matrix> matrices = fileWorker.readTestData();
         ArrayList<Matrix> result = new ArrayList<>();
 
         for (int i = 0; i < matrices.size() - 1; i += 2) {

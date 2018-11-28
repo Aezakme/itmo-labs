@@ -4,6 +4,7 @@ import com.itmo.lab1.math.Calculator;
 import com.itmo.lab1.math.Matrix;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class Executor implements Callable<Matrix> {
@@ -12,10 +13,10 @@ public class Executor implements Callable<Matrix> {
     private int step;
     private Calculator calculator;
 
-    private ArrayList<Matrix> input;
-    private ArrayList<Matrix> output;
+    private List<Matrix> input;
+    private List<Matrix> output;
 
-    Executor(int threadNumber, int step, ArrayList<Matrix> input) {
+    Executor(int threadNumber, int step, List<Matrix> input) {
         this.threadNumber = threadNumber;
         this.step = step;
         this.input = input;
