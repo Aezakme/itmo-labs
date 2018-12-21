@@ -14,10 +14,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        int threadsNumber = 4;
-        if (args.length > 0 && Integer.parseInt(args[0]) > 0) {
-            threadsNumber = Integer.parseInt(args[0]);
-        }
+        int threadsNumber = 14;
+//        if (args.length > 0 && Integer.parseInt(args[0]) > 0) {
+//            threadsNumber = Integer.parseInt(args[0]);
+//        }
 
         ArrayList<Matrix> result = new ArrayList<>();
         ArrayList<Future<Matrix>> executors = new ArrayList<>();

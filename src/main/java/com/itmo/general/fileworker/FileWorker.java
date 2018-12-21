@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class FileWorker {
 
     private static final String FILE_NAME = "temp.txt";
-    private static final Integer MATRIX_COUNT = 500;
+    private static final Integer MATRIX_COUNT = 500_000;
     private static final Integer VALUES_BOUND = 1000;
 
     public void writeTestData() {

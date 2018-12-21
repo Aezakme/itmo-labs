@@ -4,21 +4,27 @@ import com.itmo.lab1.math.Matrix;
 import com.itmo.lab2.tasksupplier.Task;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
-public class RoundRobin implements ThreadPoolInterface {
+public class WeightedRoundRobin implements ThreadPoolInterface {
 
     private Stack<Task> tasks;
-    private ArrayList<Executor> executors;
+    private Map<Integer, Executor> executors;
     private ArrayList<Matrix> result;
 
-    public RoundRobin(int threadsNumber, Stack<Task> tasks) {
+    private Integer counter = 0;
+    private Integer maxWeight = 0;
+
+    public WeightedRoundRobin(int threadsNumber, Stack<Task> tasks) {
         this.tasks = tasks;
 
         result = new ArrayList<>();
-        executors = new ArrayList<>();
+        executors = new HashMap<>();
+        maxWeight = threadsNumber;
         for (int i = 0; i < threadsNumber; i++) {
-            executors.add(new Executor());
+            executors.put(i, new Executor());
         }
     }
 
@@ -30,7 +36,10 @@ public class RoundRobin implements ThreadPoolInterface {
         Thread thread = new Thread(() -> {
 
             while (!isDone()) {
-                for (Executor executor : executors) {
+                counter++;
+                for (int i = 0; counter + i < maxWeight; i++) {
+                    Executor executor = executors.get(counter + i);
+
                     if (executor.isDone()) {
                         if (!executor.isResultRead()) {
                             result.add(executor.getResult());
@@ -41,6 +50,7 @@ public class RoundRobin implements ThreadPoolInterface {
                         }
                     }
                 }
+                if (counter > maxWeight) counter = 0;
             }
 
         });
@@ -50,8 +60,7 @@ public class RoundRobin implements ThreadPoolInterface {
 
     public Boolean isDone() {
 
-
-        for (Executor executor : executors) {
+        for (Executor executor : executors.values()) {
             if (!executor.isDone()) return false;
             if (!executor.isResultRead()) return false;
         }
@@ -60,7 +69,7 @@ public class RoundRobin implements ThreadPoolInterface {
 
     }
 
-    class Executor {
+    private class Executor {
         private Task task;
         private Matrix result;
         private Boolean done = true;
@@ -94,6 +103,4 @@ public class RoundRobin implements ThreadPoolInterface {
             thread.start();
         }
     }
-
-
 }
